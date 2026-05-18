@@ -1,0 +1,47 @@
+.footersection{
+    display: flex;
+    background-color:   #efdcdc;
+    
+}
+.Aboutus{
+    max-width: 600px;
+    padding-left: 70px;
+    padding-top: 80px;
+    font-size: 17px;
+}
+.info{
+    display: flex;
+    justify-content: space-around;
+    gap: 100px;
+    padding-left: 500px;
+    background-color:   #efdcdc;
+
+}
+.policy{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    font-size: 20px;
+    color: #2E2E2E;
+}
+.information{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    font-size: 20px;
+    color: #2E2E2E;
+}
+.NeedHelp{
+    padding-top: 80px;
+    padding-bottom: 80px;
+    font-size: 20px;
+    color: #2E2E2E;
+}
+.fimg{
+    width: 30px;
+    height:auto;
+}
+.footimg{
+    display: flex;
+    padding-top: 40px;
+    width:30px;
+    gap: 15px;
+}

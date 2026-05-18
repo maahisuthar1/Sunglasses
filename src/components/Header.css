@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.navbar {
+  color: black;
+  display: flex;
+  gap: 50px;
+  font-size: 20px;
+}
+.navbar a {
+  text-decoration: none;
+  color: #2A2A2A;
+}
+.navbar a:hover {
+  color: #c8a45d;
+}
+.header {
+  background-color: whitesmoke ;
+  height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+}
+.logo {
+  font-family: cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: #c8a45d;
+}
+
+.search img {
+  width: 40px;
+  height: auto;
+}

@@ -1,0 +1,18 @@
+.Hero img{
+    width:100%;
+    height: auto;
+}
+.container {
+  position: relative;
+  width: 300px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(230, 188, 188, 0.901);
+  border-radius: 30px;
+  transition: all 0.3s ease;
+}
