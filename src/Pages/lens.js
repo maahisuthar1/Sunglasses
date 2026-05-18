@@ -8,7 +8,7 @@ function Lens(){
             <img src={Hero} alt="Hero"/>
         </div>
         <div className="part1">
-            <img className="hi"></img>
+            
             <div className="text1">
                     hi
             </div>
