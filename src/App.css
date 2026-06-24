@@ -1,5 +1,263 @@
-* {
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart-drawer {
+  width: 500px;
+  height: 100%;
+  background: white;
+  padding: 20px;
+  overflow-y: auto;
+
+
+  transform: translateX(0);
+  animation: slideIn 0.3s ease-out;
+
+
+  border-left: 1px solid #e8e8e8;
+  box-shadow: -8px 0 30px rgba(0,0,0,0.08);
+
+}
+.cart-drawer button{
+  width: 40px;
+  height: 40px;
+  font-weight: 700;
+  border-radius: 50%;
+  border: none;
+}
+.cart-drawer button:hover{
+  background-color: #d6d6d6;
+}
+
+.cart-title {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 50px;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.cart-detail {
+  padding: 18px;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 16px;
+  justify-content: center;
+  display: flex;
+  background-color: white;
+  border: 1px solid #ECECEC;
+  border-radius: 16px;
+    transition: 0.3s ease;
+
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.cart-item:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.cart-detail img {
+  width: 15px;
+  height: auto;
+  border-radius: 5px;
+  padding: 15px;
+} 
+.cart-total {
+  font-size: 30px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding-left: 20px;
+  color: #3a1313;
+  display: flex;
+}
+.cart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 15px;
+  font-weight: 500;
+}
+.product-name {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F1F1F;
+}
+.cart-price {
+
+
+  font-family: "Inter", sans-serif;
+font-size: 14px;
+font-weight: 500;
+color: #6B6B6B;
+}
+.cart-detail {
+  position: relative;
+}
+
+
+.remove-items {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+
+  width: 35px;
+  height: 35px;
+  border: none;
+  /* border: 1px solid #3a1313; */
+  border-radius: 50%;
+
+  background: #f3f3f3;
+  color: #3d3d3d;
+
+  cursor: pointer;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  transition: 0.2s;
+}
+.remove-items:hover {
+  background: #edb2b2;
+  color: white;
+}
+.remover-items img{
+  width: 55px;
+}
+.cart-quantity {
+    width: 100px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+ padding: 8px 12px;
+  border: 1px solid #dadada;
+   background: #f8f8f8;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+.cart-quantity:hover {
+  background: #f1f1f1;
+    border-color: #c8c8c8;
+
+}
+
+
+.cart-quantity button {
+  width: 24;
+  height: 24px;
+  border: none;
+  cursor: pointer;
+  /* border: 1px solid rgb(7, 0, 0) ; */
+  background: transparent;
+  color: #555;
+  font-size: 18px;
+  font-weight: 600;
+}
+.cart-quantity:hover button {
+  color: #222;
+}
+.cart-quantity span {
+
+
+  font-family: "Inter", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #4A2C1D; /* dark brown */
+  
+  min-width: 10px;
+  text-align: center;
+
+}
+.cart-summary {
+  margin-top: 20px;
+  padding: 18px;
+  background: #FCF8F5;
+  border-radius: 14px;
+  margin-bottom: 10px;
+    box-shadow: 2px 4px 7px rgba(152, 146, 146, 0.894);
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 12px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+}
+.summary-row span:first-child {
+  color: #6B6B6B;
+}
+
+.summary-row span:last-child {
+  color: #1F1F1F;
+  font-weight: 600;
+}
+.summary-divider {
+  height: 2px;
+  background: #9c9b9b;
+  margin: 14px 0;
+}
+.total-row {
+  font-size: 18px;
+  font-weight: 700;
+}
+.total-row span {
+  color: #1F1F1F !important;
+}
+.checkout{
+  color: rgb(238, 236, 236);
+  background-color: #71351b;
+  font-size: 17px;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  text-decoration: none;
+  
+}
+.checkout:hover{
+  background-color: #7f3110;
+  font-weight: 100;
+}
+.policys{
+  display: flex;
+  justify-content:space-around;
+  padding-top: 5px;
+  color: #413d3b;
+}
+.policys span:first-child{
+  font-size: 13px;
+}
+.policys span:nth-child(2){
+  font-size: 13px;
+}
+.policys span:last-child{
+  font-size: 13px;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }

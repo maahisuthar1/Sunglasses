@@ -1,23 +1,21 @@
 import "./scroll.css"
-
-
-import img1 from "./Screenshot 2026-03-20 222652.png";
-import img2 from "./Screenshot 2026-03-20 233919.png";
-import img3 from "./Screenshot 2026-03-20 221935.png";
-import img4 from "./Screenshot 2026-03-20 222245.png";
-import img5 from "./Screenshot 2026-03-20 233910.png";
-import img6 from "./Screenshot 2026-03-20 221948.png";
-import img7 from "./Screenshot 2026-03-20 222026.png";
-import img8 from "./Screenshot 2026-03-20 222302.png";
-import img9 from "./Screenshot 2026-03-20 222703.png";
-import img10 from "./Screenshot 2026-03-20 223141.png";
-import img11 from "./Screenshot 2026-03-20 233851.png";
-import img12 from "./Screenshot 2026-03-20 223108.png";
-import img13 from "./Screenshot 2026-03-20 233929.png";
-import img14 from "./Screenshot 2026-03-20 222635.png";
-import img15 from "./Screenshot 2026-03-20 221911.png";
-
 import { useRef, useEffect } from "react";
+import img1 from "../assets/Screenshot 2026-03-20 222652.png";
+import img2 from "../assets/Screenshot 2026-03-20 233919.png";
+import img3 from "../assets/Screenshot 2026-03-20 221935.png";
+import img4 from "../assets/Screenshot 2026-03-20 222245.png";
+import img5 from "../assets/Screenshot 2026-03-20 233910.png";
+import img6 from "../assets/Screenshot 2026-03-20 221948.png";
+import img7 from "../assets/Screenshot 2026-03-20 222026.png";
+import img8 from "../assets/Screenshot 2026-03-20 222302.png";
+import img9 from "../assets/Screenshot 2026-03-20 222703.png";
+import img10 from "../assets/Screenshot 2026-03-20 223141.png";
+import img11 from "../assets/Screenshot 2026-03-20 233851.png";
+import img12 from "../assets/Screenshot 2026-03-20 223108.png";
+import img13 from "../assets/Screenshot 2026-03-20 233929.png";
+import img14 from "../assets/Screenshot 2026-03-20 222635.png";
+import img15 from "../assets/Screenshot 2026-03-20 221911.png";
+
 
 function Scroll() 
 {

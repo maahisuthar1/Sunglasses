@@ -1,0 +1,414 @@
+/* BACKDROP */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal {
+  width: 950px;
+  max-width: 95%;
+  min-height: 560px;
+  display: flex;
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  animation: pop 0.25s ease;
+}
+.image-section {
+  width: 400px;
+  height: 720px;
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-head {
+  flex: 1;
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.modal-logo {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.brand {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  color: #111;
+}
+
+.subtitle {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: #666;
+}
+
+.modalentry {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modalentry input {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background: #fafafa;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.modalentry input::placeholder {
+  color: #999;
+}
+
+.modalentry input:focus {
+  border-color: #c8a45d;
+  background: #fff;
+  transform: scale(1.01);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.submit-btn {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #d4aa63, #9a5c1b);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cancel-btn {
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #f3f3f3;
+  color: #333;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background: #e7e7e7;
+  border:none;
+}
+
+.switch-text {
+  margin-top: 8px;
+
+  text-align: center;
+
+  font-size: 14px;
+  color: #666;
+}
+
+.switch-text span {
+  color: #9a5c1b;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.switch-text span:hover {
+  text-decoration: underline;
+}
+
+.image-section {
+  position: relative;
+  flex: 1;
+  min-width: 380px;
+
+  overflow: hidden;
+}
+
+.modelpic {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+.cancel-cross {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  /* padding: 15px; */
+  width: 50px;
+  height: 50px;
+  border: none;
+  color:white;
+  background: transparent;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cancel-overlay {
+  background: #e7e7e7;
+  display: flex;
+  justify-content: end;
+  padding-right: 20px;
+}
+.error-message {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background-color: #f0bfc3;
+  color: #da1427;
+  font-size: 14px;
+}
+@media (max-width: 768px) {
+  .modal {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .image-section {
+    display: none;
+  }
+
+  .modal-head {
+    padding: 30px;
+  }
+
+  .brand {
+    font-size: 32px;
+  }
+}
+
+/* BACKDROP
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal {
+  display: flex;
+  width: 550px;
+  height: 570px;
+  background: #ffffff;
+  border-radius: 16px;
+  gap: 70px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  color: #222;
+  text-align: center;
+  animation: pop 0.25s ease-in-out;
+}
+.modelpic {
+  width: 400px;
+  height: 550px;
+}
+.modal-header img{
+  width: 270px;
+  
+}
+.modal-head{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.brand {
+
+  font-weight: 700;
+  margin: 0;
+  color: #111;
+  padding:0%
+}
+
+.modalentry input {
+  padding: 22px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+  background: #f9f9f9;
+  color: #222;
+  transition: 0.2s;
+}
+@keyframes pop {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-logo {
+  width: 60px;
+  padding-top: 0px;
+}
+
+.brand {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+  color: #111;
+}
+
+.modal-header h2 {
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
+  margin-top: 6px;
+}
+
+.modalentry {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.modalentry input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+  background: #f9f9f9;
+  color: #222;
+  transition: 0.2s;
+}
+
+.modalentry input::placeholder {
+  color: #999;
+}
+
+.modalentry input:focus {
+  border-color: #c8a45d;
+  background: #fff;
+  transform: scale(1.02);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.submit-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #c8a45d, #8a4d14);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cancel-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #f3f3f3;
+  color: #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #e7e7e7;
+}
+
+.switch-text {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #666;
+}
+
+.switch-text span {
+  color: #8a4d14;
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.switch-text span:hover {
+  text-decoration: underline;
+}
+.haveanaccount {
+  font-size: 14px;
+  color: #f9f7f700;
+  margin-top: 15px;
+}
+
+ */

@@ -1,0 +1,212 @@
+.upiPay{
+    background-color: rgba(253, 248, 235, 0.829);
+}
+.upi-page{
+    display: flex;
+    background-color: rgba(253, 248, 235, 0.829);
+    gap: 380px;
+}
+.extra img{
+    width: 500px;
+    margin: 20px;
+}
+.top-text p:first-child {
+  font-size: 30px;
+  font-weight: 500;
+  display: flex;
+  margin-left: 120px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.top-text p:nth-child(2) {
+  color: rgb(45, 44, 44);
+  font-size: 15px;
+  font-weight: 350;
+  margin-left: 120px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.top-text p:last-child {
+  font-size: 20px;
+  font-weight: 550;
+  margin-left: 120px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.divider {
+  height: 2px;
+  width: 770px;
+  background-color: rgba(212, 214, 214, 0.639);
+  margin-bottom: 20px;
+  margin-left: 100px;
+}
+.app-logo {
+  display: flex;
+  gap: 20px;
+  margin-left: 140px;
+}
+.app-logo img {
+  width: 30px;
+  height: auto;
+  display: flex;
+  margin-left: 20px;
+}
+.gpay {
+  display: flex;
+  border-radius: 15px;
+  border: 1px solid rgb(119, 80, 17);
+  background-color: rgba(192, 123, 10, 0.394);
+  font-size: 20px;
+  width: 170px;
+  height: 60px;
+  padding: 10px;
+  gap: 20px;
+}
+.gpay:hover {
+  border: 2px solid rgb(156, 105, 23);
+  background-color: rgba(184, 134, 52, 0.527);
+}
+.gpay p {
+  margin-top: 5px;
+  font-weight: 500;
+}
+.phonepe {
+  display: flex;
+  border-radius: 15px;
+  border: 1px solid rgb(119, 80, 17);
+  background-color: rgba(192, 123, 10, 0.394);
+  font-size: 20px;
+  width: 170px;
+  height: 60px;
+  padding: 10px;
+  gap: 15px;
+}
+.phonepe:hover {
+  border: 2px solid rgb(156, 105, 23);
+  background-color: rgba(184, 134, 52, 0.527);
+}
+.phonepe p {
+  margin-top: 5px;
+  font-weight: 500;
+}
+.paytm {
+  display: flex;
+  border-radius: 15px;
+  border: 1px solid rgb(119, 80, 17);
+  background-color: rgba(192, 123, 10, 0.394);
+  font-size: 20px;
+  width: 170px;
+  height: 60px;
+  padding: 10px;
+  gap: 20px;
+}
+.paytm:hover {
+  border: 2px solid rgb(156, 105, 23);
+  background-color: rgba(184, 134, 52, 0.527);
+}
+.paytm p {
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+.using-id p:first-child {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 120px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.using-id p:nth-child(2) {
+  font-size: 14px;
+  margin-left: 120px;
+}
+.using-id input {
+  width: 700px;
+  margin-left: 140px;
+  margin-top: 7px;
+  padding: 15px;
+  border-radius: 7px;
+  border: 1px solid rgba(182, 182, 182, 0.639);
+}
+.using-id p:nth-child(4) {
+  margin-top: 10px;
+  margin-left: 140px;
+  font-size: 12px;
+  color: rgba(58, 58, 58, 0.807);
+}
+.or {
+  display: flex;
+}
+.or p:first-child {
+  color: rgb(116, 116, 116);
+  margin-top: 20px;
+  font-size: 15px;
+}
+.or p:nth-child(2) {
+  color: rgb(24, 23, 23);
+  margin-top: 20px;
+  font-size: 15px;
+  margin-left: 0px;
+}
+.or p:last-child {
+  color: rgb(116, 116, 116);
+  margin-top: 20px;
+  font-size: 15px;
+}
+.using-QR {
+  display: flex;
+  gap: 50px;
+}
+.using-QR p:first-child {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 120px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.using-QR p:nth-child(2) {
+  font-size: 12px;
+  font-weight: 200;
+}
+.using-QR img {
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 250px;
+  padding: 10px;
+}
+.qr-inst {
+  width: 200px;
+  height: 110px;
+  font-size: 15px;
+  margin-top: 90px;
+  padding: 15px;
+  background-color: rgba(146, 98, 10, 0.346);
+  border-radius: 12px;
+}
+.pay-now {
+  margin-left: 120px;
+  padding-left: 310px;
+  padding-right: 310px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  margin-bottom: 20px;
+  background-color: rgba(115, 66, 6, 0.459);
+  border: 1px solid rgba(115, 66, 6, 0.459);
+  color:rgb(17, 1, 1);
+  font-weight: 500;
+  font-size: 15px;
+  font-family: sans-serif fonts ;
+  border-radius: 10px;
+}
+.pay-now:hover{
+    background-color: rgba(107, 68, 1, 0.687);
+     border: 1px solid rgba(115, 66, 6, 0.459);
+     color: rgb(243, 243, 244);
+}
+.pay-now:disabled {
+  background-color:rgba(190, 125, 14, 0.948) ;
+  color: rgb(248, 211, 163);
+  opacity: 0.6;
+  cursor: not-allowed;
+}

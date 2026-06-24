@@ -3,12 +3,17 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  overflow-x:hidden;
+}
+
 .bestsection{
   background: #f8f8f8;
 }
 .hero img {
   width: 100%;
-  height: auto;
+  height: 80vh;
+  display: block;
 }
 .cardstext{
   display: flex;
@@ -69,7 +74,8 @@
 .text{
   display:flex;
   flex-direction: column;
-  padding-right: 170px;
+  justify-content: center;
+  padding-right: 190px;
   padding-bottom: 30px;
 }
 .home img{
