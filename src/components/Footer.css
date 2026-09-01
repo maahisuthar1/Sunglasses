@@ -1,4 +1,4 @@
-.footersection{
+/* .footersection{
     display: flex;
    background-color:rgba(207, 175, 133, 0.37);
 }
@@ -57,4 +57,222 @@
     margin-bottom: 70px;
     width:30px;
     gap: 15px;
+} */
+
+.footersection {
+    display: flex;
+    background-color: rgba(207, 175, 133, 0.37);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* =========================
+   ABOUT US
+========================= */
+
+.Aboutus {
+    width: 40%;
+    max-width: 600px;
+    padding-left: 70px;
+    padding-top: 110px;
+    padding-bottom: 50px;
+    font-size: 17px;
+    box-sizing: border-box;
+}
+
+.Aboutus p {
+    padding-top: 20px;
+    line-height: 1.6;
+}
+
+.Aboutus input {
+    margin-top: 30px;
+    padding: 10px;
+    width: 250px;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    border-radius: 5px;
+    border: 1px solid #2E2E2E;
+}
+
+/* =========================
+   FOOTER INFORMATION
+========================= */
+
+.info {
+    flex: 1;
+
+    display: flex;
+    justify-content: space-around;
+    gap: 50px;
+
+    margin-top: 20px;
+    padding: 0 50px;
+
+    box-sizing: border-box;
+}
+
+.policy,
+.information,
+.NeedHelp {
+    padding-top: 80px;
+    padding-bottom: 80px;
+
+    font-size: 20px;
+    color: #2E2E2E;
+
+    min-width: 120px;
+}
+
+.fimg {
+    width: 30px;
+    height: auto;
+}
+
+.footimg {
+    display: flex;
+    padding-top: 40px;
+    margin-bottom: 70px;
+
+    width: 30px;
+    gap: 15px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .footersection {
+        flex-direction: column;
+    }
+
+    .Aboutus {
+        width: 100%;
+        max-width: 700px;
+
+        padding: 60px 50px 30px;
+    }
+
+    .info {
+        width: 100%;
+
+        padding: 0 50px;
+
+        gap: 30px;
+        justify-content: space-between;
+    }
+
+    .policy,
+    .information,
+    .NeedHelp {
+        padding-top: 40px;
+        padding-bottom: 50px;
+    }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .footersection {
+        flex-direction: column;
+    }
+
+    .Aboutus {
+        width: 100%;
+
+        padding: 40px 25px 20px;
+
+        font-size: 15px;
+    }
+
+    .Aboutus p {
+        padding-top: 10px;
+        line-height: 1.5;
+    }
+
+    .Aboutus input {
+        width: 100%;
+        max-width: 300px;
+
+        margin-top: 20px;
+    }
+
+    .info {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 20px;
+
+        padding: 20px 25px 40px;
+
+        margin-top: 0;
+    }
+
+    .policy,
+    .information,
+    .NeedHelp {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        font-size: 16px;
+    }
+
+    .NeedHelp {
+        grid-column: 1 / -1;
+    }
+
+    .footimg {
+        padding-top: 20px;
+        margin-bottom: 20px;
+
+        gap: 12px;
+    }
+
+    .fimg {
+        width: 25px;
+    }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 400px) {
+
+    .Aboutus {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .info {
+        padding-left: 18px;
+        padding-right: 18px;
+
+        gap: 10px;
+    }
+
+    .policy,
+    .information,
+    .NeedHelp {
+        font-size: 14px;
+    }
+
+    .Aboutus input {
+        max-width: 100%;
+    }
+
+    .fimg {
+        width: 22px;
+    }
 }

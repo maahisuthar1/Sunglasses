@@ -1,4 +1,4 @@
-.upiPay {
+/* .upiPay {
   background-color: rgba(253, 248, 235, 0.829);
 }
 .upi-page {
@@ -209,4 +209,743 @@
   color: rgb(248, 211, 163);
   opacity: 0.6;
   cursor: not-allowed;
+} */
+
+/* =========================
+   UPI PAYMENT PAGE
+========================= */
+
+.upiPay {
+  background-color: rgba(253, 248, 235, 0.829);
+
+  min-height: 100vh;
+
+  box-sizing: border-box;
 }
+
+.upi-page {
+  display: flex;
+
+  width: 100%;
+
+  background-color: rgba(253, 248, 235, 0.829);
+
+  gap: 80px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   IMAGE SECTION
+========================= */
+
+.extra {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  flex: 0 0 35%;
+
+  box-sizing: border-box;
+}
+
+.extra img {
+  width: 100%;
+  max-width: 500px;
+
+  height: auto;
+
+  margin: 20px;
+
+  object-fit: contain;
+}
+
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.top-text,
+.using-id,
+.using-QR {
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   TOP TEXT
+========================= */
+
+.top-text p:first-child {
+  font-size: 30px;
+
+  font-weight: 500;
+
+  display: flex;
+
+  margin-left: 0;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.top-text p:nth-child(2) {
+  color: rgb(45, 44, 44);
+
+  font-size: 15px;
+
+  font-weight: 350;
+
+  margin-left: 0;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.top-text p:last-child {
+  font-size: 20px;
+
+  font-weight: 550;
+
+  margin-left: 0;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+  height: 2px;
+
+  width: 100%;
+  max-width: 770px;
+
+  background-color: rgba(212, 214, 214, 0.639);
+
+  margin-bottom: 20px;
+  margin-left: 0;
+}
+
+
+/* =========================
+   PAYMENT APP LOGOS
+========================= */
+
+.app-logo {
+  display: flex;
+
+  gap: 15px;
+
+  margin-left: 0;
+
+  flex-wrap: wrap;
+}
+
+.app-logo img {
+  width: 30px;
+
+  height: auto;
+
+  display: block;
+
+  margin-left: 0;
+}
+
+
+/* Common payment app styling */
+
+.gpay,
+.phonepe,
+.paytm {
+  display: flex;
+
+  align-items: center;
+
+  border-radius: 15px;
+
+  border: 1px solid rgb(119, 80, 17);
+
+  background-color: rgba(192, 122, 10, 0.26);
+
+  font-size: 20px;
+
+  width: 170px;
+  min-height: 60px;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+}
+
+.gpay {
+  gap: 15px;
+}
+
+.phonepe {
+  gap: 15px;
+}
+
+.paytm {
+  gap: 15px;
+}
+
+.gpay:hover,
+.phonepe:hover,
+.paytm:hover {
+  border: 1px solid rgb(156, 105, 23);
+
+  background-color: rgba(184, 134, 52, 0.527);
+}
+
+.gpay p,
+.phonepe p,
+.paytm p {
+  margin-top: 5px;
+
+  font-weight: 500;
+}
+
+
+/* =========================
+   UPI ID
+========================= */
+
+.using-id p:first-child {
+  font-size: 20px;
+
+  font-weight: 600;
+
+  margin-left: 0;
+
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.using-id p:nth-child(2) {
+  font-size: 14px;
+
+  margin-left: 0;
+}
+
+.using-id input {
+  width: 100%;
+  max-width: 700px;
+
+  margin-left: 0;
+  margin-top: 7px;
+
+  padding: 15px;
+
+  border-radius: 7px;
+
+  border: 1px solid rgba(182, 182, 182, 0.639);
+
+  box-sizing: border-box;
+}
+
+.using-id p:nth-child(4) {
+  margin-top: 10px;
+
+  margin-left: 0;
+
+  font-size: 12px;
+
+  color: rgba(58, 58, 58, 0.807);
+}
+
+
+/* =========================
+   OR
+========================= */
+
+.or {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  width: 100%;
+
+  max-width: 700px;
+}
+
+.or p:first-child,
+.or p:nth-child(2),
+.or p:last-child {
+  color: rgb(116, 116, 116);
+
+  margin-top: 20px;
+
+  font-size: 15px;
+}
+
+.or p:nth-child(2) {
+  color: rgb(24, 23, 23);
+
+  margin-left: 0;
+}
+
+
+/* =========================
+   QR SECTION
+========================= */
+
+.using-QR {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 30px;
+
+  flex-wrap: wrap;
+}
+
+.using-QR p:first-child {
+  font-size: 18px;
+
+  font-weight: 600;
+
+  margin-left: 0;
+
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.using-QR p:nth-child(2) {
+  font-size: 12px;
+
+  font-weight: 200;
+}
+
+.using-QR img {
+  width: 200px;
+  max-width: 100%;
+
+  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-left: 0;
+
+  padding: 10px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   QR INSTRUCTIONS
+========================= */
+
+.qr-inst {
+  width: 200px;
+
+  min-height: 110px;
+
+  height: auto;
+
+  font-size: 15px;
+
+  margin-top: 90px;
+
+  padding: 15px;
+
+  background-color: rgba(146, 98, 10, 0.346);
+
+  border-radius: 12px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   PAY NOW
+========================= */
+
+.pay-now {
+  width: 100%;
+  max-width: 700px;
+
+  margin-left: 0;
+
+  padding: 15px 30px;
+
+  margin-bottom: 20px;
+
+  background-color: rgba(115, 66, 6, 0.459);
+
+  border: 1px solid rgba(115, 66, 6, 0.459);
+
+  color: rgb(17, 1, 1);
+
+  font-weight: 500;
+
+  font-size: 15px;
+
+  font-family: sans-serif;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+}
+
+.pay-now:hover {
+  background-color: rgba(107, 68, 1, 0.687);
+
+  border: 1px solid rgba(115, 66, 6, 0.459);
+
+  color: rgb(243, 243, 244);
+}
+
+.pay-now:disabled {
+  background-color: rgba(190, 125, 14, 0.948);
+
+  color: rgb(248, 211, 163);
+
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================================
+   TABLET
+   Below 1000px
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .upi-page {
+    gap: 40px;
+
+    padding: 0 30px;
+  }
+
+  .extra {
+    flex: 0 0 30%;
+  }
+
+  .extra img {
+    max-width: 350px;
+
+    margin: 20px 0;
+  }
+
+  .top-text p:first-child {
+    font-size: 27px;
+  }
+
+  .top-text p:nth-child(2) {
+    font-size: 14px;
+  }
+
+  .top-text p:last-child {
+    font-size: 18px;
+  }
+
+  .app-logo {
+    gap: 10px;
+  }
+
+  .gpay,
+  .phonepe,
+  .paytm {
+    width: 150px;
+  }
+
+  .using-id input,
+  .pay-now {
+    max-width: 100%;
+  }
+
+  .using-QR {
+    gap: 20px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+   Below 768px
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .upi-page {
+    flex-direction: column;
+
+    gap: 10px;
+
+    padding: 20px;
+  }
+
+  /* Move image above payment */
+
+  .extra {
+    width: 100%;
+
+    justify-content: center;
+
+    order: -1;
+  }
+
+  .extra img {
+    width: 70%;
+
+    max-width: 300px;
+
+    margin: 10px auto;
+  }
+
+
+  /* Main text */
+
+  .top-text p:first-child {
+    font-size: 25px;
+
+    margin-top: 15px;
+
+    justify-content: center;
+
+    text-align: center;
+  }
+
+  .top-text p:nth-child(2),
+  .top-text p:last-child {
+    text-align: center;
+  }
+
+  .top-text p:nth-child(2) {
+    font-size: 14px;
+  }
+
+  .top-text p:last-child {
+    font-size: 18px;
+  }
+
+
+  /* Apps */
+
+  .app-logo {
+    justify-content: center;
+
+    gap: 10px;
+  }
+
+  .gpay,
+  .phonepe,
+  .paytm {
+    width: calc(50% - 10px);
+
+    min-width: 140px;
+
+    justify-content: center;
+
+    font-size: 17px;
+  }
+
+
+  /* UPI */
+
+  .using-id p:first-child {
+    font-size: 18px;
+
+    margin-top: 20px;
+  }
+
+  .using-id p:nth-child(2) {
+    font-size: 13px;
+  }
+
+  .using-id input {
+    width: 100%;
+
+    padding: 13px;
+  }
+
+
+  /* OR */
+
+  .or {
+    justify-content: center;
+  }
+
+
+  /* QR */
+
+  .using-QR {
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    gap: 10px;
+  }
+
+  .using-QR img {
+    width: 180px;
+
+    margin: 10px auto;
+  }
+
+  .qr-inst {
+    width: 100%;
+    max-width: 300px;
+
+    margin-top: 5px;
+  }
+
+
+  /* Pay button */
+
+  .pay-now {
+    width: 100%;
+
+    padding: 15px;
+
+    font-size: 16px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   Below 480px
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .upi-page {
+    padding: 15px;
+  }
+
+  .extra img {
+    width: 80%;
+
+    max-width: 260px;
+  }
+
+  .top-text p:first-child {
+    font-size: 22px;
+  }
+
+  .top-text p:nth-child(2) {
+    font-size: 13px;
+  }
+
+  .top-text p:last-child {
+    font-size: 16px;
+  }
+
+
+  /* Payment apps */
+
+  .app-logo {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+  }
+
+  .gpay,
+  .phonepe,
+  .paytm {
+    width: 100%;
+
+    min-width: 0;
+
+    height: 55px;
+
+    font-size: 15px;
+
+    padding: 8px;
+  }
+
+  .app-logo img {
+    width: 25px;
+  }
+
+
+  /* UPI */
+
+  .using-id input {
+    font-size: 14px;
+
+    padding: 12px;
+  }
+
+  .using-id p:nth-child(4) {
+    font-size: 11px;
+  }
+
+
+  /* QR */
+
+  .using-QR img {
+    width: 160px;
+  }
+
+  .qr-inst {
+    font-size: 13px;
+
+    padding: 12px;
+  }
+
+
+  /* Button */
+
+  .pay-now {
+    font-size: 15px;
+
+    padding: 13px;
+  }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+   Below 350px
+===================================================== */
+
+@media (max-width: 350px) {
+
+  .upi-page {
+    padding: 10px;
+  }
+
+  .extra img {
+    width: 85%;
+  }
+
+  .top-text p:first-child {
+    font-size: 20px;
+  }
+
+  .top-text p:nth-child(2) {
+    font-size: 12px;
+  }
+
+  .top-text p:last-child {
+    font-size: 15px;
+  }
+
+  .app-logo {
+    grid-template-columns: 1fr;
+  }
+
+  .gpay,
+  .phonepe,
+  .paytm {
+    width: 100%;
+  }
+
+  .using-QR img {
+    width: 140px;
+  }
+} 

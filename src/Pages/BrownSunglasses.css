@@ -1,4 +1,4 @@
-.mimg
+/* .mimg
 {
   display: flex;
   justify-content: center;
@@ -16,4 +16,145 @@
   padding: 50px;
   padding-top: 120px;
   padding-left: 150px;
+} */
+
+/* =========================
+   MAIN IMAGE
+========================= */
+
+.mimg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   BROWN PICS
+========================= */
+
+.brownpics {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 20px;
+
+  padding: 50px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   BROWN SECTION
+========================= */
+
+.brown {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  padding: 50px;
+  padding-top: 120px;
+  padding-left: 150px;
+
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .brownpics {
+    padding: 40px 30px;
+    gap: 15px;
+  }
+
+  .brown {
+    padding: 70px 50px;
+    gap: 15px;
+
+    justify-content: center;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .mimg {
+    padding: 10px 20px;
+  }
+
+  .brownpics {
+    padding: 30px 20px;
+
+    gap: 15px;
+
+    justify-content: center;
+  }
+
+  .brown {
+    padding: 50px 25px;
+
+    gap: 20px;
+
+    justify-content: center;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+  .mimg {
+    padding: 5px 10px;
+  }
+
+  .brownpics {
+    padding: 25px 10px;
+
+    gap: 12px;
+  }
+
+  .brown {
+    padding: 35px 15px;
+
+    gap: 15px;
+  }
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 350px) {
+
+  .brownpics {
+    padding: 20px 5px;
+
+    gap: 10px;
+  }
+
+  .brown {
+    padding: 30px 10px;
+
+    gap: 10px;
+  }
 }
