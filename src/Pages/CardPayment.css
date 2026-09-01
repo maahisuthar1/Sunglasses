@@ -1,32 +1,7 @@
-/* 
-.cardpay{
-    margin-left: 70px;
-}
-.cardoptions{
-    margin-bottom: 30px;
-}
 
-.cardtypes{
-    width: 570px;
-    background-color: bisque;
-    border: 1px solid rgb(173, 117, 12);
-    border-radius: 15px;
-}
-.cardtypes img{
-    height: 70px;
-    margin: 30px;
-    background-color: aliceblue;
-    border: 1px solid burlywood;
-}
-.cardtypes img:nth-child(2){
-    height: 60px;
-    padding: 10px;
-
-} */
 
 /* =========================
-   CARD PAYMENT
-========================= */
+   CARD PAYMENT*/
 
 .cardpay {
   margin-left: 70px;
@@ -39,8 +14,7 @@
 
 
 /* =========================
-   CARD OPTIONS
-========================= */
+   CARD OPTIONS*/
 
 .cardoptions {
   margin-bottom: 30px;
@@ -48,8 +22,7 @@
 
 
 /* =========================
-   CARD TYPES
-========================= */
+   CARD TYPES*/
 
 .cardtypes {
   width: 100%;
@@ -71,8 +44,7 @@
 
 
 /* =========================
-   CARD IMAGES
-========================= */
+   CARD IMAGES*/
 
 .cardtypes img {
   height: 70px;
@@ -96,8 +68,7 @@
 
 
 /* =====================================================
-   TABLET
-===================================================== */
+   TABLET*/
 
 @media (max-width: 1000px) {
 
@@ -120,8 +91,7 @@
 
 
 /* =====================================================
-   MOBILE
-===================================================== */
+   MOBILE*/
 
 @media (max-width: 768px) {
 
@@ -161,8 +131,7 @@
 
 
 /* =====================================================
-   SMALL MOBILE
-===================================================== */
+   SMALL MOBILE*/
 
 @media (max-width: 500px) {
 
@@ -196,8 +165,7 @@
 
 
 /* =====================================================
-   VERY SMALL PHONES
-===================================================== */
+   VERY SMALL PHONES*/
 
 @media (max-width: 350px) {
 
@@ -220,3 +188,4 @@
     padding: 4px;
   }
 }
+

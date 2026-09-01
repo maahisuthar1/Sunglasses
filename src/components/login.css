@@ -1,4 +1,3 @@
-BACKDROP */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -413,8 +412,7 @@ BACKDROP */
 
 
 /* =========================
-   BACKDROP
-========================= */
+   BACKDROP*/
 
 .modal-overlay {
   position: fixed;
@@ -438,8 +436,7 @@ BACKDROP */
 
 
 /* =========================
-   MODAL
-========================= */
+   MODAL*/
 
 .modal {
   width: 950px;
@@ -464,8 +461,7 @@ BACKDROP */
 
 
 /* =========================
-   ANIMATION
-========================= */
+   ANIMATION*/
 
 @keyframes pop {
   from {
@@ -481,8 +477,7 @@ BACKDROP */
 
 
 /* =========================
-   IMAGE SECTION
-========================= */
+   IMAGE SECTION*/
 
 .image-section {
   position: relative;
@@ -503,8 +498,7 @@ BACKDROP */
 
 
 /* =========================
-   FORM SECTION
-========================= */
+   FORM SECTION*/
 
 .modal-head {
   flex: 1;
@@ -522,8 +516,7 @@ BACKDROP */
 
 
 /* =========================
-   HEADER
-========================= */
+   HEADER*/
 
 .modal-header {
   text-align: center;
@@ -561,8 +554,7 @@ BACKDROP */
 
 
 /* =========================
-   INPUTS
-========================= */
+   INPUTS*/
 
 .modalentry {
   display: flex;
@@ -605,8 +597,7 @@ BACKDROP */
 
 
 /* =========================
-   BUTTONS
-========================= */
+   BUTTONS*/
 
 .modal-actions {
   display: flex;
@@ -673,8 +664,7 @@ BACKDROP */
 
 
 /* =========================
-   SWITCH LOGIN / REGISTER
-========================= */
+   SWITCH LOGIN REGISTER*/
 
 .switch-text {
   margin-top: 8px;
@@ -700,8 +690,7 @@ BACKDROP */
 
 
 /* =========================
-   CLOSE BUTTON
-========================= */
+   CLOSE BUTTON*/
 
 .cancel-cross {
   position: absolute;
@@ -732,8 +721,7 @@ BACKDROP */
 
 
 /* =========================
-   CANCEL OVERLAY
-========================= */
+   CANCEL OVERLAY*/
 
 .cancel-overlay {
   background: #e7e7e7;
@@ -746,8 +734,7 @@ BACKDROP */
 
 
 /* =========================
-   ERROR MESSAGE
-========================= */
+   ERROR MESSAGE*/
 
 .error-message {
   margin-top: 10px;
@@ -768,8 +755,7 @@ BACKDROP */
 
 /* =====================================================
    TABLET
-   769px - 1000px
-===================================================== */
+   769px - 1000px*/
 
 @media (max-width: 1000px) {
 
@@ -798,8 +784,7 @@ BACKDROP */
 
 /* =====================================================
    MOBILE
-   Below 768px
-===================================================== */
+   Below 768px*/
 
 @media (max-width: 768px) {
 
@@ -868,8 +853,7 @@ BACKDROP */
 
 /* =====================================================
    SMALL MOBILE
-   Below 500px
-===================================================== */
+   Below 500px*/
 
 @media (max-width: 500px) {
 
@@ -935,8 +919,7 @@ BACKDROP */
 
 /* =====================================================
    VERY SMALL PHONES
-   Below 350px
-===================================================== */
+   Below 350px*/
 
 @media (max-width: 350px) {
 
@@ -961,3 +944,4 @@ BACKDROP */
     padding: 10px;
   }
 }
+

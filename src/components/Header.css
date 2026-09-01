@@ -1,8 +1,7 @@
 
 
 /* =========================
-   HEADER
-========================= */
+   HEADER*/
 
 header {
   position: sticky;
@@ -37,8 +36,7 @@ header.hidden {
 }
 
 /* =========================
-   LOGO
-========================= */
+   LOGO*/
 
 .logo {
   font-family: cursive;
@@ -56,8 +54,7 @@ header.hidden {
 }
 
 /* =========================
-   NAVBAR
-========================= */
+   NAVBAR*/
 
 .navbar {
   color: black;
@@ -79,8 +76,7 @@ header.hidden {
 }
 
 /* =========================
-   RIGHT SIDE BUTTONS
-========================= */
+   RIGHT SIDE BUTTONS*/
 
 .buttons {
   display: flex;
@@ -125,8 +121,7 @@ header.hidden {
 }
 
 /* =========================
-   CART
-========================= */
+   CART*/
 
 .cart {
   display: flex;
@@ -150,8 +145,7 @@ header.hidden {
 }
 
 /* =========================
-   SEARCH
-========================= */
+   SEARCH*/
 
 .search img {
   width: 40px;
@@ -161,8 +155,7 @@ header.hidden {
 
 /* =====================================================
    TABLET
-   769px - 1100px
-===================================================== */
+   769px - 1100px*/
 
 @media (max-width: 1100px) {
 
@@ -204,9 +197,8 @@ header.hidden {
 
 
 /* =====================================================
-   SMALL TABLET / LARGE PHONE
-   600px - 768px
-===================================================== */
+   SMALL TABLET LARGE PHONE
+   600px - 768px*/
 
 @media (max-width: 768px) {
 
@@ -272,8 +264,7 @@ header.hidden {
 
 /* =====================================================
    MOBILE
-   Below 600px
-===================================================== */
+   Below 600px*/
 
 @media (max-width: 600px) {
 
@@ -348,8 +339,7 @@ header.hidden {
 
 /* =====================================================
    VERY SMALL PHONES
-   Below 400px
-===================================================== */
+   Below 400px*/
 
 @media (max-width: 400px) {
 
@@ -381,3 +371,4 @@ header.hidden {
     font-size: 13px;
   }
 }
+

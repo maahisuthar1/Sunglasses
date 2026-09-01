@@ -132,13 +132,12 @@ font-weight: 600;
   border: 3px solid rgb(130, 126, 126);
   border-radius: 30px;
   background-color: #f0e8e8;
-} */ 
+} */
 
 
 
 /* =========================
-   HERO
-========================= */
+   HERO*/
 
 .Hero {
   width: 100%;
@@ -154,8 +153,7 @@ font-weight: 600;
 
 
 /* =========================
-   HEADING
-========================= */
+   HEADING*/
 
 .heading {
   margin-left: 200px;
@@ -179,8 +177,7 @@ font-weight: 600;
 
 
 /* =========================
-   OPTIONS
-========================= */
+   OPTIONS*/
 
 .options {
   position: relative;
@@ -191,8 +188,7 @@ font-weight: 600;
 
 
 /* =========================
-   OPTION TEXT
-========================= */
+   OPTION TEXT*/
 
 .optext {
   display: flex;
@@ -215,8 +211,7 @@ font-weight: 600;
 
 
 /* =========================
-   LIKE BUTTON
-========================= */
+   LIKE BUTTON*/
 
 .likebtn {
   position: absolute;
@@ -239,8 +234,7 @@ font-weight: 600;
 
 
 /* =========================
-   BUTTON
-========================= */
+   BUTTON*/
 
 .sbtn {
   padding: 15px;
@@ -266,8 +260,7 @@ font-weight: 600;
 
 
 /* =========================
-   RIGHT SECTION
-========================= */
+   RIGHT SECTION*/
 
 .right {
   display: flex;
@@ -280,8 +273,7 @@ font-weight: 600;
 
 
 /* =========================
-   OPTION TEXT
-========================= */
+   OPTION TEXT*/
 
 .otext {
   display: flex;
@@ -295,8 +287,7 @@ font-weight: 600;
 
 
 /* =========================
-   CARD CONTAINER
-========================= */
+   CARD CONTAINER*/
 
 .containing {
   position: relative;
@@ -319,8 +310,7 @@ font-weight: 600;
 
 
 /* =========================
-   CARDS
-========================= */
+   CARDS*/
 
 .cards {
   display: flex;
@@ -339,8 +329,7 @@ font-weight: 600;
 
 
 /* =========================
-   SUNGLASSES SECTION
-========================= */
+   SUNGLASSES SECTION*/
 
 .sunhead {
   font-size: 45px;
@@ -370,8 +359,7 @@ font-weight: 600;
 
 
 /* =========================
-   CATEGORY
-========================= */
+   CATEGORY*/
 
 .scategory {
   font-size: 20px;
@@ -383,8 +371,7 @@ font-weight: 600;
 
 
 /* =========================
-   COLOR
-========================= */
+   COLOR*/
 
 .color {
   display: flex;
@@ -406,8 +393,7 @@ font-weight: 600;
 
 
 /* =========================
-   SUNGLASSES TEXT
-========================= */
+   SUNGLASSES TEXT*/
 
 .suntext {
   width: 100%;
@@ -430,8 +416,7 @@ font-weight: 600;
 
 /* =====================================================
    TABLET
-   769px - 1000px
-===================================================== */
+   769px - 1000px*/
 
 @media (max-width: 1000px) {
 
@@ -476,8 +461,7 @@ font-weight: 600;
 
 /* =====================================================
    MOBILE
-   Below 768px
-===================================================== */
+   Below 768px*/
 
 @media (max-width: 768px) {
 
@@ -577,8 +561,7 @@ font-weight: 600;
 
 /* =====================================================
    SMALL MOBILE
-   Below 500px
-===================================================== */
+   Below 500px*/
 
 @media (max-width: 500px) {
 
@@ -658,8 +641,7 @@ font-weight: 600;
 
 /* =====================================================
    VERY SMALL PHONES
-   Below 350px
-===================================================== */
+   Below 350px*/
 
 @media (max-width: 350px) {
 
@@ -696,3 +678,4 @@ font-weight: 600;
     gap: 8px;
   }
 }
+
