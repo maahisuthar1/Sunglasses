@@ -121,10 +121,10 @@ font-weight: 600;
   text-decoration: none;
   color: black;
 }
-.color a:hover{
+/* .color a:hover{
   color: #c8a45d;
   background-color: #f9f7f7ee;
-}
+} */
 .suntext{
   height: 1000px;
   padding: 50px;

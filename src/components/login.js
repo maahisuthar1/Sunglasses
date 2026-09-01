@@ -28,68 +28,80 @@ function Login({ isOpen, onClose, onLogin, mode, onSwitchMode }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url =
-      "https://script.google.com/macros/s/AKfycbw3ATLys7AumfUBgDpq8WqTM6PsZPmQw-z-prOkem92rvoMdXM6d70H54cL4CBpe0Ze/exec";
-
     if (mode === "register") {
-      const users = JSON.parse(localStorage.getItem("users")) || [];
+      try {
+        const response = await fetch(
+          "https://sungalsses-backend.onrender.com/api/register",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              password,
+            }),
+          },
+        );
 
-      const existingUser = users.find((user) => user.email === email);
+        const data = await response.json();
 
-      if (existingUser) {
-        setError("Email already registered");
+        console.log(data);
+        console.log("LOGIN RESPONSE:", data);
+        if (!response.ok) {
+          setError(data.message);
+          return;
+        }
+
+        clearForm();
+        onClose();
+      } catch (err) {
+        setError("Registration failed");
+      }
+      return;
+    }
+    try {
+      const response = await fetch(
+        "https://sungalsses-backend.onrender.com/api/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        },
+      );
+
+      const data = await response.json();
+
+
+  console.log("LOGIN RESPONSE:", data);
+  console.log("TOKEN:", data.token);
+
+      if (!response.ok) {
+        setError(data.message);
         return;
       }
 
-      users.push({
-        name,
-        email,
-        password,
-      });
+      localStorage.setItem("token", data.token);
 
-      localStorage.setItem("users", JSON.stringify(users));
+      const currentUser = {
+        userId: data.userId,
+        name: data.name,
+      };
 
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body:
-          `action=register` +
-          `&Name=${encodeURIComponent(name)}` +
-          `&Email=${encodeURIComponent(email)}` +
-          `&Password=${encodeURIComponent(password)}`,
-      });
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-      setTimeout(() => {
-        clearForm();
-        onClose();
-      }, 800);
-
-      return;
-    }
-
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const user = users.find(
-      (u) => u.email === email && u.password === password,
-    );
-
-    if (!user) {
-      setError("Invalid email or password");
-      return;
-    }
-
-    setError("");
-
-    localStorage.setItem("currentUser", JSON.stringify(user));
-
-    onLogin(user);
-
-    setTimeout(() => {
+      onLogin(currentUser);
       clearForm();
       onClose();
-    }, 800);
+    } catch (err) {
+      setError("Login failed");
+    }
   };
 
   return ReactDOM.createPortal(

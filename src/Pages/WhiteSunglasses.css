@@ -3,6 +3,13 @@
   height: 650px;
   padding: 10px;
 }
+
+.test-image {
+  border: 5px solid red;
+}
+
+
+
 .mimg
 {
   display: flex;
@@ -50,4 +57,7 @@
   padding: 50px;
   padding-top: 120px;
   padding-left: 150px;
+}
+.globe{
+
 }

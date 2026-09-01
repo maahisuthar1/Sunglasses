@@ -1,14 +1,14 @@
-.upiPay{
-    background-color: rgba(253, 248, 235, 0.829);
+.upiPay {
+  background-color: rgba(253, 248, 235, 0.829);
 }
-.upi-page{
-    display: flex;
-    background-color: rgba(253, 248, 235, 0.829);
-    gap: 380px;
+.upi-page {
+  display: flex;
+  background-color: rgba(253, 248, 235, 0.829);
+  gap: 380px;
 }
-.extra img{
-    width: 500px;
-    margin: 20px;
+.extra img {
+  width: 500px;
+  margin: 20px;
 }
 .top-text p:first-child {
   font-size: 30px;
@@ -54,8 +54,8 @@
 .gpay {
   display: flex;
   border-radius: 15px;
-  border: 1px solid rgb(119, 80, 17);
-  background-color: rgba(192, 123, 10, 0.394);
+  border: 1px solid rgba(119, 80, 17, 0.87);
+  background-color: rgba(192, 122, 10, 0.26);
   font-size: 20px;
   width: 170px;
   height: 60px;
@@ -63,7 +63,7 @@
   gap: 20px;
 }
 .gpay:hover {
-  border: 2px solid rgb(156, 105, 23);
+  border: 1px solid rgb(156, 105, 23);
   background-color: rgba(184, 134, 52, 0.527);
 }
 .gpay p {
@@ -74,7 +74,7 @@
   display: flex;
   border-radius: 15px;
   border: 1px solid rgb(119, 80, 17);
-  background-color: rgba(192, 123, 10, 0.394);
+  background-color: rgba(192, 122, 10, 0.26);
   font-size: 20px;
   width: 170px;
   height: 60px;
@@ -82,7 +82,7 @@
   gap: 15px;
 }
 .phonepe:hover {
-  border: 2px solid rgb(156, 105, 23);
+  border: 1px solid rgb(156, 105, 23);
   background-color: rgba(184, 134, 52, 0.527);
 }
 .phonepe p {
@@ -93,7 +93,7 @@
   display: flex;
   border-radius: 15px;
   border: 1px solid rgb(119, 80, 17);
-  background-color: rgba(192, 123, 10, 0.394);
+  background-color: rgba(192, 122, 10, 0.26);
   font-size: 20px;
   width: 170px;
   height: 60px;
@@ -101,7 +101,7 @@
   gap: 20px;
 }
 .paytm:hover {
-  border: 2px solid rgb(156, 105, 23);
+  border: 1px solid rgb(156, 105, 23);
   background-color: rgba(184, 134, 52, 0.527);
 }
 .paytm p {
@@ -193,19 +193,19 @@
   margin-bottom: 20px;
   background-color: rgba(115, 66, 6, 0.459);
   border: 1px solid rgba(115, 66, 6, 0.459);
-  color:rgb(17, 1, 1);
+  color: rgb(17, 1, 1);
   font-weight: 500;
   font-size: 15px;
-  font-family: sans-serif fonts ;
+  font-family: sans-serif fonts;
   border-radius: 10px;
 }
-.pay-now:hover{
-    background-color: rgba(107, 68, 1, 0.687);
-     border: 1px solid rgba(115, 66, 6, 0.459);
-     color: rgb(243, 243, 244);
+.pay-now:hover {
+  background-color: rgba(107, 68, 1, 0.687);
+  border: 1px solid rgba(115, 66, 6, 0.459);
+  color: rgb(243, 243, 244);
 }
 .pay-now:disabled {
-  background-color:rgba(190, 125, 14, 0.948) ;
+  background-color: rgba(190, 125, 14, 0.948);
   color: rgb(248, 211, 163);
   opacity: 0.6;
   cursor: not-allowed;

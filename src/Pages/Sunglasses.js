@@ -1,38 +1,12 @@
 import "./Sunglasses.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Hero from "./Sunglasseshero.png";
-import img1 from "./sfgreen.png";
-import img2 from "./ssgreem.png";
-import img3 from "./sfcut.png";
-import img4 from "./sscut.png";
-import img5 from "./sfwave.png";
-import img6 from "./sswave.png";
-import img7 from "./sfbrown.png";
-import img8 from "./ssbrown.png";
-import img9 from "./sforbit.png";
-import img10 from "./ssorbit.png";
-import img11 from "./sfsstyle.png";
-import img12 from "./sssstyle.png";
-import img13 from "../assets/sfblack.png";
-import img14 from "../assets/ssblack.png";
-import img15 from "./sfdgreen.png";
-import img16 from "./ssdgreen.png";
-import img17 from "./sfwood.png";
-import img18 from "./sswood.png";
-import img19 from "./sfpurple.png";
-import img20 from "./sspurple.png";
-import img21 from "./sfcircle.png";
-import img22 from "./sscircle.png";
-import img23 from "./sfblue.png";
-import img24 from "./ssblue.png";
-import img25 from "./sfoctal.png";
-import img26 from "./ssoctal.png";
-import img27 from "./sfcream.png";
-import img28 from "./sscream.png";
 
-function Sunglasses({ addToCart, setCartOpen }) {
+function Sunglasses({ addToCart, setCartOpen, removeFromCart }) {
   const [likedItems, setLikedItems] = useState({});
+
+  const [hoveredItem, setHoveredItem] = useState(null);
 
   function handleLike(index) {
     setLikedItems((prev) => ({
@@ -40,6 +14,51 @@ function Sunglasses({ addToCart, setCartOpen }) {
       [index]: !prev[index],
     }));
   }
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(
+          "https://sungalsses-backend.onrender.com/api/products",
+        );
+
+        console.log("Data:", response.data);
+
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Fetch Error:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const [selectedColors, setSelectedColors] = useState([]);
+  const handleColorChange = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSelectedColors((prev) => [...prev, value]);
+    } else {
+      setSelectedColors((prev) => prev.filter((c) => c !== value));
+    }
+  };
+
+  const sectionProducts =
+    selectedColors.length === 0
+      ? products.filter((p) => p.section === "Sunglasses")
+      : products.filter((p) =>
+          selectedColors.includes((p.color || "").toLowerCase()),
+        );
+
+  console.log("FIRST PRODUCT:", products[0]);
+  console.log(
+    "ALL COLORS:",
+    products.map((p) => p.color),
+  );
+  console.log("SELECTED:", selectedColors);
 
   return (
     <>
@@ -58,16 +77,60 @@ function Sunglasses({ addToCart, setCartOpen }) {
           <p className="scategory">
             <b>Colors Available</b>
           </p>
+
           <div className="color">
-            <Link to="/BlueSunglasses">Blue</Link>
+            <label>
+              <input
+                type="checkbox"
+                value="blue"
+                onChange={handleColorChange}
+              />
+              Blue
+            </label>
+
             <br />
-            <Link to="/BrownSunglasses">Brown</Link>
+
+            <label>
+              <input
+                type="checkbox"
+                value="brown"
+                onChange={handleColorChange}
+              />
+              Brown
+            </label>
+
             <br />
-            <Link to="/PurpleSunglasses">Purple</Link>
+
+            <label>
+              <input
+                type="checkbox"
+                value="purple"
+                onChange={handleColorChange}
+              />
+              Purple
+            </label>
+
             <br />
-            <Link to="/WhiteSunglasses">White</Link>
+
+            <label>
+              <input
+                type="checkbox"
+                value="white"
+                onChange={handleColorChange}
+              />
+              White
+            </label>
+
             <br />
-            <Link to="/BlackSunglasses">Black</Link>
+
+            <label>
+              <input
+                type="checkbox"
+                value="black"
+                onChange={handleColorChange}
+              />
+              Black
+            </label>
           </div>
           <p className="scategory">
             <b>Styles</b>
@@ -88,427 +151,51 @@ function Sunglasses({ addToCart, setCartOpen }) {
           </div>
         </div>
         <div className="cards">
-          <div className="contain">
-            <div className="options">
-              <img src={img1} className="front" alt="sfgreen" />
-              <img src={img2} className="side" alt="ssgreem" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 899</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 1,
-                      name: "Green breeze",
-                      price: 899,
-                      image: img1,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(0)}>
-                  {likedItems[0] ? "❤️ " : "🤍 "}
-                </button>
+          {sectionProducts.map((product, index) => (
+            <div className="containing" key={product._id}>
+              <div className="options">
+                <img
+                  src={`https://sungalsses-backend.onrender.com/${
+                    hoveredItem === product._id && product.hoverSrc
+                      ? product.hoverSrc
+                      : product.src
+                  }`}
+                  className="fronts"
+                  alt=""
+                  onMouseEnter={() => setHoveredItem(product._id)}
+                  onMouseLeave={() => setHoveredItem(null)}
+                />
               </div>
-            </div>
-          </div>
 
-          <div className="contain">
-            <div className="options">
-              <img src={img3} className="front" alt="sfcut" />
-              <img src={img4} className="side" alt="sscut" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 999</p>
+              <div className="optext">
+                <div className="right">
+                  <div className="costs">
+                    <p className="cost">₹ {product.price}</p>
+                  </div>
+
+                  <button
+                    className="sbtn"
+                    onClick={() => {
+                      addToCart({
+                        _id: product._id,
+                        name: product.name,
+                        price: product.price,
+                        image: product.src,
+                      });
+
+                      setCartOpen(true);
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+
+                  <button className="likebtn" onClick={() => handleLike(index)}>
+                    {likedItems[index] ? "❤️" : "🤍"}
+                  </button>
                 </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 2,
-                      name: "Cut Sunglasses",
-                      price: 999,
-                      image: img3,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(1)}>
-                  {likedItems[1] ? "❤️ " : "🤍 "}
-                </button>
               </div>
             </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img5} className="front" alt="sfwave" />
-              <img src={img6} className="side" alt="sswave" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 799</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 3,
-                      name: "Wave Sunglasses",
-                      price: 799,
-                      image: img5,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(2)}>
-                  {likedItems[2] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img7} className="front" alt="sfbrown" />
-              <img src={img8} className="side" alt="ssbrown" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 999</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 4,
-                      name: "Brown Sunglasses",
-                      price: 999,
-                      image: img7,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(3)}>
-                  {likedItems[3] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img9} className="front" alt="sforbit" />
-              <img src={img10} className="side" alt="ssorbit" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 1199</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 5,
-                      name: "Orbit glass",
-                      price: 1199,
-                      image: img9,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(4)}>
-                  {likedItems[4] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img11} className="front" alt="sfsstyle" />
-              <img src={img12} className="side" alt="sssstyle" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 799</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 6,
-                      name: "Style Sunglasses",
-                      price: 799,
-                      image: img11,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(5)}>
-                  {likedItems[5] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img13} className="front" alt="sfblack" />
-              <img src={img14} className="side" alt="ssblack" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 599</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 7,
-                      name: "Black Sunglasses",
-                      price: 599,
-                      image: img13,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(6)}>
-                  {likedItems[6] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img15} className="front" alt="sfdgreen" />
-              <img src={img16} className="side" alt="ssdgreen" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 599</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 8,
-                      name: "Dark Green Sunglasses",
-                      price: 599,
-                      image: img15,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(7)}>
-                  {likedItems[7] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img17} className="front" alt="sfwood" />
-              <img src={img18} className="side" alt="sswood" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 699</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 9,
-                      name: "Wood Sunglasses",
-                      price: 699,
-                      image: img17,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(8)}>
-                  {likedItems[8] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img19} className="front" alt="sfpurple" />
-              <img src={img20} className="side" alt="sspurple" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 799</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 10,
-                      name: "Purple Sunglasses",
-                      price: 799,
-                      image: img19,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(9)}>
-                  {likedItems[9] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img21} className="front" alt="sfcircle" />
-              <img src={img22} className="side" alt="sscircle" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 599</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 11,
-                      name: "Circle Sunglasses",
-                      price: 599,
-                      image: img21,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(10)}>
-                  {likedItems[10] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img23} className="front" alt="sfblue" />
-              <img src={img24} className="side" alt="ssblue" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 899</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 12,
-                      name: "Blue Sunglasses",
-                      price: 899,
-                      image: img23,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(11)}>
-                  {likedItems[11] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img25} className="front" alt="sfoctal" />
-              <img src={img26} className="side" alt="ssoctal" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 999</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 13,
-                      name: "Octal Sunglasses",
-                      price: 999,
-                      image: img25,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(12)}>
-                  {likedItems[12] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="contain">
-            <div className="options">
-              <img src={img27} className="front" alt="sfcream" />
-              <img src={img28} className="side" alt="sscream" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 1299</p>
-                </div>
-                <button
-                  className="sbtn"
-                  onClick={() => {
-                    addToCart({
-                      id: 14,
-                      name: "Cream Sunglasses",
-                      price: 1299,
-                      image: img27,
-                    });
-                    setCartOpen(true);
-                  }}
-                >
-                  Add to Cart
-                </button>
-                <button className="likebtn" onClick={() => handleLike(13)}>
-                  {likedItems[13] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>

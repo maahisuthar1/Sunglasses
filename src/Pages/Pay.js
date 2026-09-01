@@ -1,6 +1,7 @@
 import "./Pay.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Gpay from "./Screenshot_2026-06-10_133558-removebg-preview.png";
 import Phonepe from "./Screenshot_2026-06-10_133712-removebg-preview.png";
 import Paytm from "./Screenshot_2026-06-10_133807-removebg-preview.png";
@@ -23,7 +24,8 @@ function Pay({
 
   const shipping = subtotal > 2000 ? 0 : 99;
   const tax = subtotal * 0.18;
-  const total = subtotal + shipping + tax;
+  const ttl = subtotal + shipping + tax;
+  const total = Number(ttl.toFixed(2));
 
   useEffect(() => {
     if (cartOpen) {
@@ -39,17 +41,90 @@ function Pay({
 
   const [paymentMethod, setPaymentMethod] = useState("");
   const navigate = useNavigate();
-  const handlePay = () => {
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  // const handlePay = () => {
+  //   const rawUser = localStorage.getItem("currentUser");
+  //   console.log("currentUser from storage:", rawUser);
 
-    if (!currentUser) {
-      alert("Please login first");
-      return;
-    }
+  //   const currentUser =
+  //     rawUser && rawUser !== "undefined" ? JSON.parse(rawUser) : null;
+
+  //   if (!currentUser) {
+  //     alert("Please login first");
+  //     return;
+  //   }
+  //   switch (paymentMethod) {
+  //     case "UPI":
+  //       navigate("/upi-payment", {
+  //         state: {
+  //           total,
+  //           subtotal,
+  //           shipping,
+  //           tax,
+  //           cart,
+  //           paymentMethod,
+  //         },
+  //       });
+  //       break;
+
+  //     case "Card":
+  //       navigate("/card-payment");
+  //       break;
+
+  //     case "NetBanking":
+  //       navigate("/netbanking-payment");
+  //       break;
+
+  //     case "COD":
+  //       navigate("/cod-payment");
+  //       break;
+
+  //     default:
+  //       alert("Please select a payment method");
+  //   }
+  // };
+
+  const handlePay = async () => {
+  const rawUser = localStorage.getItem("currentUser");
+
+  const currentUser =
+    rawUser && rawUser !== "undefined"
+      ? JSON.parse(rawUser)
+      : null;
+
+  if (!currentUser) {
+    alert("Please login first");
+    return;
+  }
+
+  if (!paymentMethod) {
+    alert("Please select a payment method");
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.post(
+      "https://sungalsses-backend.onrender.com/api/checkout",
+      {
+        paymentMethod: paymentMethod,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log("Order created:", response.data);
+
+    const orderId = response.data.order._id;
+
     switch (paymentMethod) {
       case "UPI":
         navigate("/upi-payment", {
           state: {
+            orderId,
             total,
             subtotal,
             shipping,
@@ -61,21 +136,96 @@ function Pay({
         break;
 
       case "Card":
-        navigate("/card-payment");
+        navigate("/card-payment", {
+          state: {
+            orderId,
+            total,
+            paymentMethod,
+          },
+        });
         break;
 
       case "NetBanking":
-        navigate("/netbanking-payment");
+        navigate("/netbanking-payment", {
+          state: {
+            orderId,
+            total,
+            paymentMethod,
+          },
+        });
         break;
 
       case "COD":
-        navigate("/cod-payment");
+        navigate("/cod-payment", {
+          state: {
+            orderId,
+            total,
+            paymentMethod,
+          },
+        });
         break;
 
       default:
-        alert("Please select a payment method");
+        alert("Invalid payment method");
     }
-  };
+  } catch (error) {
+    console.log(
+      "Checkout error:",
+      error.response?.data || error.message
+    );
+
+    alert(
+      error.response?.data?.message ||
+        "Unable to create order"
+    );
+  }
+};
+
+  const [products, setProducts] = useState([]);
+  const [colors, setColors] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productRes = await axios.get(
+          "https://sungalsses-backend.onrender.com/api/products",
+        );
+        setProducts(productRes.data);
+
+        const colorRes = await fetch(
+          "https://sungalsses-backend.onrender.com/api/colors",
+        );
+        const colorData = await colorRes.json();
+        setColors(colorData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
+
+
+
+const handlePayment = async () => {
+  try {
+    await axios.post(
+      "https://yourserver/api/orders",
+      {
+        paymentMethod: "UPI",
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+
+
+
 
   return (
     <>
@@ -85,35 +235,38 @@ function Pay({
             {cart.length === 0 ? (
               <p>Cart is empty</p>
             ) : (
-              cart.map((item) => (
-                <div className="carts-details" key={item.id}>
-                  <img src={item.image} alt={item.name} />
+              cart.map((product) => (
+                <div className="carts-details" key={product._id}>
+                  <img
+                    src={`https://sungalsses-backend.onrender.com/${product.image}`}
+                    alt={product.name}
+                  />
 
                   <button
                     className="removes-items"
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(product._id)}
                   >
                     ✕
                   </button>
 
                   <div className="cart-infos">
-                    <p className="product-names">{item.name}</p>
+                    <p className="product-names">{product.name}</p>
 
-                    <p className="cart-prices">Price = ₹{item.price}</p>
+                    <p className="cart-prices">Price = ₹{product.price}</p>
 
                     <div className="cart-quantitys">
                       <button
                         className="minus"
-                        onClick={() => decrementQuantity(item.id)}
+                        onClick={() => decrementQuantity(product._id)}
                       >
                         ~
                       </button>
 
-                      <span>{item.quantity}</span>
+                      <span>{product.quantity}</span>
 
                       <button
                         className="plus"
-                        onClick={() => incrementQuantity(item.id)}
+                        onClick={() => incrementQuantity(product._id)}
                       >
                         +
                       </button>

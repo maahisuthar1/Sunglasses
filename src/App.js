@@ -2,6 +2,7 @@ import "./App.css";
 import { Link, useLocation } from "react-router-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 import Login from "./components/login";
 import Header from "./components/Header";
 import Home from "./Pages/Home";
@@ -20,6 +21,8 @@ import CardPayment from "./Pages/CardPayment";
 import NetBankingPayment from "./Pages/NetBankingPayment";
 import CODPayment from "./Pages/CODPayment";
 import GoToTop from "./Pages/GoToTop";
+import Orders from "./Pages/Orders";
+import OrderDetails from "./Pages/OrderDetails";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -28,60 +31,160 @@ function App() {
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
 
-  const addToCart = (product) => {
-    setCart((prevCart) => {
-      const existing = prevCart.find((item) => item.id === product.id);
+  // const addToCart = (product) => {
+  //   setCart((prevCart) => {
+  //     const existing = prevCart.find((item) => item.id === product.id);
 
-      if (existing) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? {
-                ...item,
-                quantity: item.quantity + 1,
-              }
-            : item,
-        );
-      }
-      return [
-        ...prevCart,
+  //     if (existing) {
+  //       return prevCart.map((item) =>
+  //         item.id === product.id
+  //           ? {
+  //               ...item,
+  //               quantity: item.quantity + 1,
+  //             }
+  //           : item,
+  //       );
+  //     }
+  //     return [
+  //       ...prevCart,
+  //       {
+  //         ...product,
+  //         quantity: 1,
+  //       },
+  //     ];
+  //   });
+  // };
+
+  const addToCart = async (product) => {
+
+    console.log("Button clicked");
+  console.log(product);
+  
+    const token = localStorage.getItem("token");
+
+    // console.log(product);
+    console.log("Token being sent:", token);
+
+
+    try {
+      const res = await axios.post(
+        "https://sungalsses-backend.onrender.com/api/cart",
         {
-          ...product,
+          productId: product._id,
           quantity: 1,
         },
-      ];
-    });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      console.log(res.data);
+
+      setCart((prevCart) => {
+        const existing = prevCart.find((item) => item._id === product._id);
+
+        if (existing) {
+          return prevCart.map((item) =>
+            item._id === product._id
+              ? {
+                  ...item,
+                  quantity: item.quantity + 1,
+                }
+              : item,
+          );
+        }
+
+        return [...prevCart, { ...product, quantity: 1 }];
+      });
+    } catch (err) {
+      console.log("Status:", err.response?.status);
+      console.log("Data:", err.response?.data);
+    }
   };
-  const incrementQuantity = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
-          : item,
-      ),
-    );
+
+  const removeFromCart = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      await axios.delete(
+        `https://sungalsses-backend.onrender.com/api/cart/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      // remove from UI immediately
+      setCart((prev) => prev.filter((item) => item._id !== id));
+    } catch (err) {
+      console.log(err.response?.data || err.message);
+    }
   };
-  const decrementQuantity = (id) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((item) =>
-          item.id === id
-            ? {
-                ...item,
-                quantity: item.quantity - 1,
-              }
-            : item,
-        )
-        .filter((item) => item.quantity > 0),
+
+ const incrementQuantity = async (productId) => {
+  const token = localStorage.getItem("token");
+
+  const item = cart.find((p) => p._id === productId);
+
+  try {
+    await axios.patch(
+      `https://sungalsses-backend.onrender.com/api/cart/${productId}`,
+      {
+        quantity: item.quantity + 1,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
+
+    setCart((prev) =>
+      prev.map((item) =>
+        item._id === productId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+
+  } catch (err) {
+    console.log(err.response?.data);
+  }
+};
+  const decrementQuantity = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      const item = cart.find((p) => p._id === id);
+      if (!item) return;
+
+      const newQty = item.quantity - 1;
+
+      await axios.patch(
+        `https://sungalsses-backend.onrender.com/api/cart/${id}`,
+        { quantity: newQty },
+        { headers: { Authorization: `Bearer ${token}` } },
+      );
+
+      setCart((prev) =>
+        prev
+          .map((item) =>
+            item._id === id ? { ...item, quantity: newQty } : item,
+          )
+          .filter((item) => item.quantity > 0),
+      );
+    } catch (err) {
+      console.log(err.response?.data || err.message);
+    }
   };
   useEffect(() => {
-    const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+    const userData = localStorage.getItem("currentUser");
 
-    if (savedUser) {
-      setUser(savedUser);
+    if (userData && userData !== "undefined") {
+      setUser(JSON.parse(userData));
     }
   }, []);
 
@@ -101,10 +204,6 @@ function App() {
 
   const toggleAuthMode = () => {
     setAuthMode((prev) => (prev === "login" ? "register" : "login"));
-  };
-
-  const removeFromCart = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
   const subtotal = cart.reduce(
@@ -137,6 +236,29 @@ function App() {
     return null;
   };
 
+  const [products, setProducts] = useState([]);
+  const [colors, setColors] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productRes = await axios.get(
+          "https://sungalsses-backend.onrender.com/api/products",
+        );
+        setProducts(productRes.data);
+
+        const colorRes = await fetch(
+          "https://sungalsses-backend.onrender.com/api/colors",
+        );
+        const colorData = await colorRes.json();
+        setColors(colorData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+    
   return (
     <BrowserRouter>
       <ScrollToTop />
@@ -154,13 +276,23 @@ function App() {
         <Route
           path="/sunglasses"
           element={
-            <Sunglasses addToCart={addToCart} setCartOpen={setCartOpen} />
+            <Sunglasses
+              addToCart={addToCart}
+              setCartOpen={setCartOpen}
+              removeFromCart={removeFromCart}
+              incrementQuantity={incrementQuantity}
+              decrementQuantity={decrementQuantity}
+            />
           }
         />
         <Route
           path="/eyeglasses"
           element={
-            <Eyeglasses addToCart={addToCart} setCartOpen={setCartOpen} />
+            <Eyeglasses
+              addToCart={addToCart}
+              setCartOpen={setCartOpen}
+              removeFromCart={removeFromCart}
+            />
           }
         />
         <Route
@@ -168,6 +300,7 @@ function App() {
           element={
             <Pay
               cart={cart}
+              addToCart={addToCart}
               removeFromCart={removeFromCart}
               decrementQuantity={decrementQuantity}
               incrementQuantity={incrementQuantity}
@@ -175,11 +308,26 @@ function App() {
           }
         />
         <Route path="/lens" element={<Lens />} />
-        <Route path="/BlueSunglasses" element={<BlueSunglasses />} />
-        <Route path="/BrownSunglasses" element={<BrownSunglasses />} />
-        <Route path="/PurpleSunglasses" element={<PurpleSunglasses />} />
-        <Route path="/WhiteSunglasses" element={<WhiteSunglasses />} />
-        <Route path="/BlackSunglasses" element={<BlackSunglasses />} />
+        <Route
+          path="/BlueSunglasses"
+          element={<BlueSunglasses removeFromCart={removeFromCart} />}
+        />
+        <Route
+          path="/BrownSunglasses"
+          element={<BrownSunglasses removeFromCart={removeFromCart} />}
+        />
+        <Route
+          path="/PurpleSunglasses"
+          element={<PurpleSunglasses removeFromCart={removeFromCart} />}
+        />
+        <Route
+          path="/WhiteSunglasses"
+          element={<WhiteSunglasses removeFromCart={removeFromCart} />}
+        />
+        <Route
+          path="/BlackSunglasses"
+          element={<BlackSunglasses removeFromCart={removeFromCart} />}
+        />
 
         <Route path="/upi-payment" element={<UpiPayment />} />
 
@@ -188,6 +336,11 @@ function App() {
         <Route path="/netbanking-payment" element={<NetBankingPayment />} />
 
         <Route path="/cod-payment" element={<CODPayment />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route
+  path="/order/:id"
+  element={<OrderDetails />}
+/>
       </Routes>
 
       <Login
@@ -210,35 +363,38 @@ function App() {
             {cart.length === 0 ? (
               <p>Cart is empty</p>
             ) : (
-              cart.map((item) => (
-                <div className="cart-detail" key={item.id}>
+              cart.map((product) => (
+                <div className="cart-detail" key={product._id}>
                   <button
                     className="remove-items"
-                    onClick={() => removeFromCart(item.id)}
+                    onClick={() => removeFromCart(product._id)}
                   >
                     💔
                   </button>
 
-                  <img src={item.image} alt={item.name} />
+                  <img
+                    src={`https://sungalsses-backend.onrender.com/${product.image}`}
+                    alt={product.name}
+                  />
 
                   <div className="cart-info">
-                    <p className="product-name">{item.name}</p>
+                    <p className="product-name">{product.name}</p>
 
-                    <p className="cart-price">MRP = ₹{item.price}</p>
+                    <p className="cart-price">MRP = ₹{product.price}</p>
 
                     <div className="cart-quantity">
                       <button
                         className="minus"
-                        onClick={() => decrementQuantity(item.id)}
+                        onClick={() => decrementQuantity(product._id)}
                       >
                         ~
                       </button>
 
-                      <span>{item.quantity}</span>
+                      <span>{product.quantity}</span>
 
                       <button
                         className="plus"
-                        onClick={() => incrementQuantity(item.id)}
+                        onClick={() => incrementQuantity(product._id)}
                       >
                         +
                       </button>

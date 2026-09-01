@@ -1,26 +1,37 @@
 import "./Footer.css";
+import { useState } from "react";
 import facebook from "../assets/Screenshot 2026-04-08 202829.png";
 import insta from "../assets/Screenshot 2026-04-08 202847.png";
 import x from "../assets/Screenshot 2026-04-08 203055.png";
 import linkdin from "../assets/Screenshot 2026-04-08 202951.png";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
   return (
     <div className="footersection">
       <div className="Aboutus">
-        <b>About Us</b>
-        <p>
-          Sunglasses is a global eyewear brand commited to providing the latest
-          fashion and eye-wear products in all possible price ranges. We offer a
-          vast protfolio of premium products, and our main target is casual
-          sunglasses for every day usage, but we also sell safety glasses,
-          prescription lenses as well as fashion goggles
-        </p>
+        <b>NEWSLETTER</b>
+        <p>sign up to our newsletter to receive exclusive offers and updates</p>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setError("");
+          }}
+          required
+        />
+        {error && <div className="error-message">{error}</div>}
+
         <div className="footimg">
-        <img src={facebook} className="fimg" alt="facebook"></img>
-        <img src={insta} className="fimg" alt="insta"></img>
-        <img src={x} className="fimg" alt=""></img>
-        <img src={linkdin} className="fimg" alt=""></img>
+          <img src={facebook} className="fimg" alt="facebook"></img>
+          <img src={insta} className="fimg" alt="insta"></img>
+          <img src={x} className="fimg" alt=""></img>
+          <img src={linkdin} className="fimg" alt=""></img>
         </div>
       </div>
       <div className="info">

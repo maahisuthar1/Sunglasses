@@ -1,22 +1,10 @@
 import "./WhiteSunglasses.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Hero from "./Sunglasseshero.png";
-import img1 from "./Screenshot_2026-05-20_223355-removebg-preview.png";
-import img2 from "./Screenshot_2026-05-20_223418-removebg-preview.png";
-import img3 from "./Screenshot_2026-05-20_223520-removebg-preview.png";
-import img4 from "./Screenshot_2026-05-20_223544-removebg-preview.png";
-import img5 from "./Screenshot_2026-05-20_223612-removebg-preview.png"; 
-import img6 from "./Screenshot_2026-05-20_223700-removebg-preview.png";
-import img7 from "./Screenshot_2026-05-20_223806-removebg-preview.png";
-import img8 from "./Screenshot_2026-05-20_223941-removebg-preview.png";
-import img9 from "./Screenshot_2026-05-20_224024-removebg-preview.png";
-import img10 from "./Screenshot_2026-05-20_223500-removebg-preview.png";
 
-function WhiteSunglasses() {
-     function handleClick() {
-      console.log("Button Clicked!");
-    }
+function WhiteSunglasses({ addToCart, setCartOpen }) {
+    
     const [likedItems, setLikedItems] = useState({});
     function handleLike(index) {
       setLikedItems((prev) => ({
@@ -24,6 +12,57 @@ function WhiteSunglasses() {
         [index]: !prev[index],
       }));
     }
+const [products, setProducts] = useState([]);
+  const [colors, setColors] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+
+  // FETCH DATA
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const productRes = await axios.get(
+          "https://sungalsses-backend.onrender.com/api/products"
+        );
+        setProducts(productRes.data);
+
+        const colorRes = await fetch(
+          "https://sungalsses-backend.onrender.com/api/colors"
+        );
+        const colorData = await colorRes.json();
+        setColors(colorData);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // CHECKBOX HANDLER
+  const handleColorChange = (e) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setSelectedColors((prev) => [...prev, value]);
+    } else {
+      setSelectedColors((prev) =>
+        prev.filter((c) => c !== value)
+      );
+    }
+  };
+
+  // FILTER PRODUCTS
+  const filteredProducts =
+    selectedColors.length === 0
+      ? products
+      : products.filter((p) =>
+          selectedColors.includes(p.color)
+        );
+    
+      const whiteProducts = products.filter((product) => product.color === "White");
+      console.log(products);
+      console.log(whiteProducts);
+
   return (
     <>
 
@@ -42,17 +81,19 @@ function WhiteSunglasses() {
           <p className="scategory">
             <b>Colors Available</b>
           </p>
-          <div className="color">
-            <Link to="/BlueSunglasses">Blue</Link>
-            <br />
-            <Link to="/BrownSunglasses">Brown</Link>
-            <br />
-            <Link to="/PurpleSunglasses">Purple</Link>
-            <br />
-            <Link to="/WhiteSunglasses">White</Link>
-            <br />
-            <Link to="/BlackSunglasses">Black</Link>
-          </div>
+                   <div className="color">
+
+        {colors.map((color) => (
+          <label key={color} style={{ display: "block" }}>
+            <input
+              type="checkbox"
+              value={color}
+              onChange={handleColorChange}
+            />
+            {color}
+          </label>
+        ))}
+      </div>
           <p className="scategory">
             <b>Styles</b>
           </p>
@@ -71,189 +112,55 @@ function WhiteSunglasses() {
             <li>Children</li>
           </div>
         </div>
-        <div className="cards">
-          <div className="containing">
-            <div className="options">
-              <img src={img1} className="fronts" alt="sfgreen" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 899</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(0)}>
-                  {likedItems[0] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
+      <div className="cards">
+  {filteredProducts.map((product) => (
+    <div className="containing" key={product._id}>
+      <div className="options">
+        <p>{product.name}</p>
+        {/* <img
+          src={`https://sungalsses-backend.onrender.com/${product.src}`}
+          className="globe"
+          alt={product.name}
+        /> */}
+        <img
+  src={`https://sungalsses-backend.onrender.com/${product.src}`}
+  className="test-image"
+  alt={product.name}
+/>
+      </div>
+
+      <div className="optext">
+        <div className="right">
+          <div className="costs">
+            <p className="cost">₹ {product.price}</p>
           </div>
 
-          <div className="containing">
-            <div className="options">
-              <img src={img2} className="fronts" alt="sfcut" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 999</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(1)}>
-                  {likedItems[1] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img3} className="fronts" alt="sfwave" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 799</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(2)}>
-                  {likedItems[2] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img4} className="fronts" alt="sfbrown" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 999</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(3)}>
-                  {likedItems[3] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img5} className="fronts" alt="sforbit" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 1199</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(4)}>
-                  {likedItems[4] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img6} className="fronts" alt="sfsstyle" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 799</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(5)}>
-                  {likedItems[5] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img7} className="fronts" alt="sfblack" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 599</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(6)}>
-                  {likedItems[6] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img8} className="fronts" alt="sfdgreen" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 599</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(7)}>
-                  {likedItems[7] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img9} className="fronts" alt="sfwood" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 699</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(8)}>
-                  {likedItems[8] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="containing">
-            <div className="options">
-              <img src={img10} className="fronts" alt="sfpurple" />
-            </div>
-            <div className="optext">
-              <div className="right">
-                <div className="costs">
-                  <p className="cost">₹ 799</p>
-                </div>
-                <button className="sbtn" onClick={handleClick}>
-                  Buy Now
-                </button>
-                <button className="likebtn" onClick={() => handleLike(9)}>
-                  {likedItems[9] ? "❤️ " : "🤍 "}
-                </button>
-              </div>
-            </div>
-          </div>
+          <button
+  className="sbtn"
+  onClick={() => {
+    addToCart({
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.src,
+    });
+    setCartOpen(true);
+  }}
+>
+  Add to Cart
+</button>
+
+          <button
+            className="likebtn"
+            onClick={() => handleLike(product._id)}
+          >
+            {likedItems[product._id] ? "❤️" : "🤍"}
+          </button>
         </div>
+      </div>
+    </div>
+  ))}
+</div>
       </div>
     </>
   );

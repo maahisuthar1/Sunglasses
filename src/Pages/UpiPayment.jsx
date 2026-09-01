@@ -1,6 +1,7 @@
 import "./UpiPayment.css";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 import Gpay from "./Screenshot_2026-06-10_133558-removebg-preview.png";
 import Phonepe from "./Screenshot_2026-06-10_133712-removebg-preview.png";
 import Paytm from "./Screenshot_2026-06-10_133807-removebg-preview.png";
@@ -9,63 +10,125 @@ import Extra from "./Screenshot 2026-06-12 151852.png";
 
 function UpiPayment() {
   const location = useLocation();
-  const { total, cart, paymentMethod } = location.state || {};
+  const { orderId, total, cart, paymentMethod } = location.state || {};
   const [upiId, setUpiId] = useState("");
   const navigate = useNavigate();
   // const [isProcessing, setIsProcessing] = useState(false);
   const [status, setStatus] = useState("idle");
 
-  const handleUpiPayment = () => {
-    if (status !== "idle") return;
-    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  // const handleUpiPayment = () => {
+  //   if (status !== "idle") return;
+  //   const currentUser = JSON.parse(
+  //     localStorage.getItem("currentUser") || "null",
+  //   );
 
-    if (!currentUser) {
-      alert("Please login first");
-      return;
-    }
-    if (!upiId.trim()) {
-      alert("Please enter your UPI ID");
-      return;
-    }
-    setStatus("processing");
+  //   if (!currentUser) {
+  //     alert("Please login first");
+  //     return;
+  //   }
+  //   if (!upiId.trim()) {
+  //     alert("Please enter your UPI ID");
+  //     return;
+  //   }
+  //   setStatus("processing");
 
-    //  setIsProcessing(true);
-    const items = cart
-      .map((item) => `${item.name} x${item.quantity}`)
-      .join(", ");
+  //   //  setIsProcessing(true);
+  //   const items = cart
+  //     .map((item) => `${item.name} x${item.quantity}`)
+  //     .join(", ");
 
-    const url =
-      "https://script.google.com/macros/s/AKfycbykdUA9M3lMSKgfOqSY-rOWMR-GLSFU_5GJRq4osZaHcL3q0n_-BKc6Rb2McQIK4plW/exec";
+  //   const url =
+  //     "https://script.google.com/macros/s/AKfycbykdUA9M3lMSKgfOqSY-rOWMR-GLSFU_5GJRq4osZaHcL3q0n_-BKc6Rb2McQIK4plW/exec";
 
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+  //   fetch(url, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/x-www-form-urlencoded",
+  //     },
+  //     body:
+  //       `Name=${encodeURIComponent(currentUser.name)}` +
+  //       `&Email=${encodeURIComponent(currentUser.email)}` +
+  //       `&Items=${encodeURIComponent(items)}` +
+  //       `&Total=${encodeURIComponent(total)}` +
+  //       `&PaymentMethod=${encodeURIComponent(paymentMethod)}` +
+  //       `&UPI=${encodeURIComponent(upiId)}`,
+  //   })
+  //     .then((res) => res.text())
+  //     .then((data) => {
+  //       setStatus("success");
+
+  //       alert("Payment Successful ✅");
+
+  //       setTimeout(() => {
+  //         navigate("/");
+  //       }, 1000);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       alert("Failed to save payment");
+  //       setStatus("idle");
+  //     });
+  // };
+
+const handleUpiPayment = async () => {
+  if (status !== "idle") return;
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please login first");
+    return;
+  }
+
+  if (!orderId) {
+    alert("Order ID is missing");
+    return;
+  }
+
+  if (!upiId.trim()) {
+    alert("Please enter your UPI ID");
+    return;
+  }
+
+  setStatus("processing");
+
+  try {
+    const response = await axios.patch(
+      `https://sungalsses-backend.onrender.com/api/order/${orderId}/pay`,
+      {
+        paymentMethod: "UPI",
       },
-      body:
-        `Name=${encodeURIComponent(currentUser.name)}` +
-        `&Email=${encodeURIComponent(currentUser.email)}` +
-        `&Items=${encodeURIComponent(items)}` +
-        `&Total=${encodeURIComponent(total)}` +
-        `&PaymentMethod=${encodeURIComponent(paymentMethod)}` +
-        `&UPI=${encodeURIComponent(upiId)}`,
-    })
-      .then((res) => res.text())
-      .then((data) => {
-        setStatus("success");
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-        alert("Payment Successful ✅");
+    console.log("Payment response:", response.data);
 
-        setTimeout(() => {
-          navigate("/");
-        }, 1000);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Failed to save payment");
-        setStatus("idle");
-      });
-  };
+    setStatus("success");
+
+    alert("Payment Successful ✅");
+
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  } catch (error) {
+    console.log(
+      "Payment error:",
+      error.response?.data || error.message
+    );
+
+    alert(
+      error.response?.data?.message ||
+        "Payment failed"
+    );
+
+    setStatus("idle");
+  }
+};
+
 
   return (
     <>
