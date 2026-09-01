@@ -242,12 +242,7 @@ function Pay({
                     alt={product.name}
                   />
 
-                  <button
-                    className="removes-items"
-                    onClick={() => removeFromCart(product._id)}
-                  >
-                    ✕
-                  </button>
+                  
 
                   <div className="cart-infos">
                     <p className="product-names">{product.name}</p>
@@ -272,6 +267,12 @@ function Pay({
                       </button>
                     </div>
                   </div>
+                  <button
+                    className="removes-items"
+                    onClick={() => removeFromCart(product._id)}
+                  >
+                    ✕
+                  </button>
                 </div>
               ))
             )}

@@ -77,7 +77,7 @@
 ========================= */
 
 .summary-cards {
-  width: calc(100% - 180px);
+  width: calc(100% - 120px);
   max-width: 815px;
 
   margin-left: 90px;
@@ -159,7 +159,7 @@
 
   grid-template-columns: repeat(3, minmax(0, 270px));
 
-  gap: 15px;
+  gap: 25px;
 
   margin-top: 35px;
   margin-left: 90px;
@@ -172,7 +172,7 @@
 .carts-details {
   position: relative;
 
-  width: 100%;
+  width: 280px;
   min-width: 0;
 
   padding: 20px;
@@ -211,6 +211,7 @@
 ========================= */
 
 .removes-items {
+  margin-bottom: auto;
   margin-left: auto;
 
   padding: 5px;
@@ -238,8 +239,7 @@
 ========================= */
 
 .cart-quantitys {
-  width: 95px;
-  min-width: 95px;
+  width: 80px;
 
   height: 25px;
 
@@ -344,8 +344,8 @@
 
   width: calc(100% - 200px);
 
-  max-width: 900px;
-
+  /* max-width: 900px; */
+  width: 800px;
   margin-top: 30px;
 
   margin-left: 0;
@@ -355,7 +355,7 @@
 
   font-size: 30px;
 
-  background: rgba(248, 245, 245, 0.76);
+  background: rgba(252, 247, 247, 0.308);
 
   border-radius: 18px;
 
@@ -440,9 +440,10 @@
 .secure {
   font-size: 12px;
 
-  padding-left: 190px;
+  padding-left: 140px;
 
-  margin-top: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 
@@ -508,6 +509,43 @@
   margin-right: 0;
 }
 
+/* =====================================================
+   1024 x 858
+===================================================== */
+
+@media (min-width: 1001px) and (max-width: 1100px) {
+
+  .blur-text p:first-child,
+  .blur-text p:nth-child(2),
+  .blur-text p:last-child {
+    padding-left: 70px;
+  }
+
+  .summary-cards {
+    width: calc(100% - 100px);
+    margin-left: 50px;
+  }
+
+  .thecart {
+    grid-template-columns: repeat(2, minmax(0, 280px));
+    gap: 20px;
+    margin-left: 50px;
+  }
+
+  .carts-details {
+    width: 280px;
+  }
+
+  .payment {
+    width: calc(100% - 70px);
+    padding-left: 70px;
+    padding-right: 30px;
+  }
+
+  .secure {
+    padding-left: 65px;
+  }
+}
 
 /* =====================================================
    TABLET
