@@ -236,8 +236,8 @@ function App() {
     return null;
   };
 
-  const [products, setProducts] = useState([]);
-  const [colors, setColors] = useState([]);
+  const [, setProducts] = useState([]);
+  const [, setColors] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {

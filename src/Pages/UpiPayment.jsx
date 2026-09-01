@@ -10,7 +10,7 @@ import Extra from "./Screenshot 2026-06-12 151852.png";
 
 function UpiPayment() {
   const location = useLocation();
-  const { orderId, total, cart, paymentMethod } = location.state || {};
+  const { orderId, total, } = location.state || {};
   const [upiId, setUpiId] = useState("");
   const navigate = useNavigate();
   // const [isProcessing, setIsProcessing] = useState(false);

@@ -7,7 +7,7 @@ function NetBankingPayment() {
   const location = useLocation();
 const navigate = useNavigate();
 
-const { orderId, total } = location.state || {};
+const { orderId } = location.state || {};
 
 const handleNetBankingPayment = async () => {
   const token = localStorage.getItem("token");

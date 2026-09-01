@@ -3,7 +3,6 @@ import logo from "../assets/ChatGPT_Image_May_20__2026__03_49_53_PM-removebg-pre
 import cartIcon from "../assets/OIP-removebg-preview.png";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Orders from "../Pages/Orders";
 
 
 function Header({

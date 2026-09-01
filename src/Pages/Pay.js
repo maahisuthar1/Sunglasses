@@ -181,8 +181,8 @@ function Pay({
   }
 };
 
-  const [products, setProducts] = useState([]);
-  const [colors, setColors] = useState([]);
+  const [, setProducts] = useState([]);
+  const [, setColors] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -209,18 +209,18 @@ function Pay({
 
 
 
-const handlePayment = async () => {
-  try {
-    await axios.post(
-      "https://yourserver/api/orders",
-      {
-        paymentMethod: "UPI",
-      }
-    );
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const handlePayment = async () => {
+//   try {
+//     await axios.post(
+//       "https://yourserver/api/orders",
+//       {
+//         paymentMethod: "UPI",
+//       }
+//     );
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 
 
