@@ -1,4 +1,8 @@
-
+.footersection{
+    background-color: rgba(222, 184, 135, 0.473);
+    display:flex ;
+    margin-top: 70px;
+}
 
 /* =========================
    ABOUT US*/
@@ -205,7 +209,4 @@
         width: 22px;
     }
 }
-
-
-
 
